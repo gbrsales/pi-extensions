@@ -123,6 +123,10 @@ export async function startBrowserForCdp(
     "--disable-backgrounding-occluded-windows",
     "--disable-renderer-backgrounding",
 
+    // Disable GPU acceleration to avoid SIGTRAP crashes in headless/container
+    // environments where no GPU or display server is available.
+    "--disable-gpu",
+
     ...extraArgs,
     `--remote-debugging-port=${port}`,
     "--remote-debugging-address=127.0.0.1",
